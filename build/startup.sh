@@ -1,9 +1,9 @@
 #!/bin/sh
 
 # Set env vars
-set +a
-source /root/secrets.env
 set -a
+. /root/secrets.env
+set +a
 
 # Setup SSH server
 mkdir /var/run/sshd
@@ -13,7 +13,7 @@ sed -i 's/#Port 22/Port 22/g' /etc/ssh/sshd_config
 sed -i 's/#PasswordAuthentication yes/PasswordAuthentication no/g' /etc/ssh/sshd_config
 # Add public key
 mkdir -p /root/.ssh
-cp /root/projects/dev_machine_key_pair.pub /root/.ssh/authorized_keys
+cp /root/projects/devmachine/dev_machine_key_pair.pub /root/.ssh/authorized_keys
 # Start SSH server
 /usr/sbin/sshd -D &
 

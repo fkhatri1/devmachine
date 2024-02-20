@@ -1,2 +1,6 @@
 setuptools
+ipython
+ipywidgets
+notebook
+qtconsole
 jupyterlab

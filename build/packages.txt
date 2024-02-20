@@ -1,5 +1,7 @@
 openssh-server
 build-essential
 git
+libsqlite3-dev
 zlib1g-dev
 libssl-dev
+libffi-dev
