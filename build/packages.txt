@@ -1,0 +1,5 @@
+openssh-server
+build-essential
+git
+zlib1g-dev
+libssl-dev
