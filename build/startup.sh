@@ -17,5 +17,9 @@ cp /root/projects/devmachine/dev_machine_key_pair.pub /root/.ssh/authorized_keys
 # Start SSH server
 /usr/sbin/sshd -D &
 
-# Start JupyterLab
-nohup jupyter lab --ip=0.0.0.0 --port=8888 --no-browser --allow-root  1>>~/jupyter.log 2>>~/jupyter.log &
+# Setup Git
+# SECRETS
+git config --global user.email "faysalkhatri@gmail.com"
+git config --global user.name "Faysal Khatri"
+eval $(ssh-agent)
+ssh-add /root/projects/devmachine/build/dev_machine_key_pair

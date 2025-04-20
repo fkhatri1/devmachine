@@ -1,2 +1,4 @@
 *.env
+dev_machine_key_pair
 *.pub
+*.code-workspace

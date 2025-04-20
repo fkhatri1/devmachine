@@ -11,33 +11,12 @@ RUN apt-get clean && \
     rm /tmp/packages.txt && \
     rm -rf /var/lib/apt/lists/*
 
-# Download Python 3.12 source code
-WORKDIR /usr/src
-RUN wget https://www.python.org/ftp/python/3.12.0/Python-3.12.0.tgz && \
-    tar -xf Python-3.12.0.tgz && \
-    rm Python-3.12.0.tgz
+# Install Golang
+RUN apt-get update && apt-get install -y golang-go
 
-# Compile and install Python 3.12
-WORKDIR /usr/src/Python-3.12.0
-RUN ./configure --enable-optimizations && \
-    make -j $(nproc) && \
-    make install
 
-# Clean up
-WORKDIR /usr/src
-RUN rm -rf Python-3.12.0
-
-# Install pip
-RUN python3.12 -m ensurepip --upgrade
-
-# Install Python dependencies
-COPY build/requirements.txt /tmp/requirements.txt
-RUN python3.12 -m pip install --no-cache-dir -r /tmp/requirements.txt && \
-    rm /tmp/requirements.txt
-
-# Expose the SSH and JupyterLab ports
+# Expose the SSH ports
 EXPOSE 22
-EXPOSE 8888
 
 # Start SSH and JupyterLab services
 COPY build/startup.sh /root/startup.sh

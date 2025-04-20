@@ -1,3 +1,5 @@
+Set-ExecutionPolicy Unrestricted -Scope CurrentUser
+
 # Get source and target paths from environment variables
 $sourcePath = $env:SOURCE_PATH
 $targetPath = $env:TARGET_PATH
@@ -10,7 +12,7 @@ if (-not $sourcePath -or -not $targetPath) {
 
 
 # Start the Docker container in detached mode
-Start-Process -NoNewWindow -FilePath "docker" -ArgumentList "run", "--name", "devmachine", "--mount", "type=bind,source=$sourcePath,target=$targetPath", "-p", "52022:22", "-p", "8888:8888", "fkhatri/devmachine:1.3"
+Start-Process -NoNewWindow -FilePath "docker" -ArgumentList "run", "--name", "gomachine", "--mount", "type=bind,source=$sourcePath,target=$targetPath", "-P", "gomachine"
 
 # Exit PowerShell
 exit
