@@ -13,7 +13,7 @@ RUN apt-get clean && \
 
 # Install Golang
 RUN apt-get update && apt-get install -y golang-go
-
+RUN go install github.com/cortesi/modd/cmd/modd@latest
 
 # Expose the SSH ports
 EXPOSE 22
